@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSpeechSynthesis } from 'react-speech-kit';
 import jsPDF from "jspdf";
 import { useState } from 'react';
 import {
@@ -20,8 +21,15 @@ export function ContainerApp() {
 
     const [text, setText] = useState('');
     const [playing, setPlaying] = useState(false);
+    const { speak, cancel, speaking } = useSpeechSynthesis();
 
-    function handlePlayAudio () {
+    function handlePlayAudio() {
+        if (playing) {
+            cancel();
+        } else {
+            speak({ text: text });
+        }
+        setPlaying(!playing);
     }
 
     function handleUpperCase() {
