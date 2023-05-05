@@ -31,12 +31,13 @@ export function ContainerApp() {
     //     setPlaying(!playing);
     // }
 
-    function handlePlayAudio(){
+    function handlePlayAudio() {
     }
+    //Função que transforma o texto em letras maiúsculas
     function handleUpperCase() {
         setText(text.toUpperCase());
     }
-
+    //Função que trasnforma o texto em letras miniúsculas
     function handleLowerCase() {
         setText(text.toLowerCase());
     }
@@ -44,7 +45,7 @@ export function ContainerApp() {
     function handleChange(event) {
         setText(event.target.value);
     }
-
+    //Função que inverte o texto
     function handleInverseCase() {
         setText(text.split('').reverse().join(''));
     }
@@ -95,9 +96,23 @@ export function ContainerApp() {
         return text.split("\n").length;
     }
 
+    //Função que gera o pdf
     function hundlePDF() {
         const doc = new jsPDF();
-        doc.text(text, 10, 10);
+        const lines = text.split('\n');
+        let y = 10; // posicao Y inicial
+
+        // Adiciona cada linha do texto ao documento PDF
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            doc.text(line, 10, y);
+            y += 10; // aumenta a posicao Y para a proxima linha
+            if (y > 280) { // quando a posicao Y alcancar o final da pagina
+                doc.addPage(); // adiciona uma nova pagina ao documento
+                y = 10; // reinicia a posicao Y para a nova pagina
+            }
+        }
+
         doc.save("document.pdf");
     }
 
