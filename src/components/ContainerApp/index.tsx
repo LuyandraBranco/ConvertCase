@@ -1,6 +1,7 @@
 import React from 'react';
 import jsPDF from "jspdf";
-import { useState } from 'react';
+import annyang from 'annyang';
+import { useState, useEffect } from 'react';
 import {
     Container,
     TexContainer,
@@ -20,19 +21,35 @@ import { ItemButton1 } from '../ItemButton1';
 export function ContainerApp() {
 
     const [text, setText] = useState('');
-    // const [playing, setPlaying] = useState(false);
+    const [isListening, setIsListening] = useState(false);
 
-    // function handlePlayAudio() {
-    //     if (playing) {
-    //         cancel();
-    //     } else {
-    //         speak({ text: text });
-    //     }
-    //     setPlaying(!playing);
-    // }
+    const handleVoiceCommand = () => {
+        const textAreaContent = text;
+        const msg = new SpeechSynthesisUtterance(textAreaContent);
+        if(isListening){
+            window.speechSynthesis.cancel();
+        }
+        else{
+            window.speechSynthesis.speak(msg);
+        }
+        setIsListening(!isListening);
+    };
 
-    function handlePlayAudio() {
-    }
+    useEffect(() => {
+        const commands = {
+            'read textarea': handleVoiceCommand
+        };
+
+        annyang.addCommands(commands);
+        annyang.start();
+
+        return () => {
+            annyang.removeCommands(Object.keys(commands));
+            annyang.abort();
+        };
+    }, []);
+
+
     //Função que transforma o texto em letras maiúsculas
     function handleUpperCase() {
         setText(text.toUpperCase());
@@ -139,7 +156,7 @@ export function ContainerApp() {
                     functionn={handleChange}
                     handleDelete={handleDeleteText}
                     handleCopy={handleCopyText}
-                    handlePlay={handlePlayAudio}
+                    handlePlay={handleVoiceCommand}
                 />
 
                 <Area>

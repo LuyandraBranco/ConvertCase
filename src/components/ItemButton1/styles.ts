@@ -17,7 +17,6 @@ export const Button = styled.button`
     @media screen and (max-width: 680px) {      
         width: 100%;
         height: 3.5rem; 
-        border-radius: 0;
     }
 
     @media (min-width: 681px) and (max-width: 992px) {
