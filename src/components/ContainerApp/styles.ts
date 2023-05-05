@@ -14,22 +14,27 @@ export const Container = styled.div`
         margin: 0 auto;
     }
 
+
 `;
 
 export const AppContainer = styled(Container)`
     
     width: 71rem;
+    width: 98%;
+    margin: 0 auto;
 
     @media screen and (max-width: 680px) {      
         width: 95%; 
-        height: 100%; 
         margin: 0 auto;
     }
 
     @media (min-width: 681px) and (max-width: 992px) {      
-        width: 48rem;  
-        height: 64rem;
-        margin: 0 3rem;
+        width: 98%; 
+        margin: 0 auto;
+    }
+
+    @media (min-width: 993px) and (max-width: 1140px) {      
+        width: 100%; 
     }
 
 
@@ -42,10 +47,12 @@ export const Title = styled.h1`
     font-weight: var(--font-weight-600);
     line-height: 2.93rem;
     margin-top: 1rem;
+    text-align: center;
 
     @media screen and (max-width: 680px) {      
         font-size: 1.8rem;
     }
+    
 
 `;
 
@@ -60,7 +67,6 @@ export const TexContainer = styled.div`
 
     @media (min-width: 681px) and (max-width: 992px) {      
         width: 48rem;  
-        height: 64rem;
         margin: 0 3rem;
     }
 
@@ -75,10 +81,16 @@ export const Description = styled.p`
     font-weight: var(--font-weight-400);
     margin-top: 1rem;
     margin-bottom: 2.5rem;
+    text-align: center;
 
-    @media screen and (max-width: 680px) {      
+    @media screen and (max-width: 399px){
+        width: 88%; 
         font-size: 1rem; 
-        width: 100%;
+    }
+
+    @media (min-width: 400px) and (max-width: 680px) {  
+        font-size: 1rem; 
+        width: 80%;      
     }
 
     @media (min-width: 681px) and (max-width: 992px) {  
@@ -104,6 +116,10 @@ export const Area = styled.div`
 
     @media (min-width: 681px) and (max-width: 992px) {      
         width: 42rem;  
+    }
+
+    @media (min-width: 993px) and (max-width: 1140px) {      
+        width: 57rem;  
     }
 
 `;

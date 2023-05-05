@@ -20,7 +20,10 @@ export const TextArea = styled.textarea`
 
     @media (min-width: 681px) and (max-width: 992px) {      
         width: 42rem;  
-        height: 22rem;
+    }
+
+    @media (min-width: 993px) and (max-width: 1140px) {      
+        width: 57rem;  
     }
 
 `;
@@ -41,6 +44,10 @@ export const Icons = styled.div `
         width: 42rem;  
     }
 
+    @media (min-width: 993px) and (max-width: 1140px) {      
+        width: 57rem;  
+    }
+
 `;
 
 export const Left = styled.div `
@@ -48,6 +55,7 @@ export const Left = styled.div `
     margin-right: auto;
 
     > Svg{
+        -webkit-color: var(--gray-400);
         color: var(--gray-400);
         font-size: 1.5rem;
         margin-left: 1rem;
@@ -61,6 +69,7 @@ export const Right = styled.div `
     margin-left: auto;
 
     > Svg{
+        -webkit-color: var(--gray-400);
         color: var(--gray-400);
         font-size: 1.5rem;
         margin: 0 0.6rem;

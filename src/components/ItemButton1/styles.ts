@@ -14,21 +14,14 @@ export const Button = styled.button`
     margin-left: ${props => props.marginLeft};
     cursor: pointer;
 
-    @media screen and (max-width: 399px){
-       margin-bottom: 0.3rem;
-    }
-    
-    @media (min-width: 400px) and (max-width: 680px) {  
-       margin-bottom: 0.5rem;  
+    @media screen and (max-width: 680px) {      
+        width: 100%;
+        height: 3.5rem; 
+        border-radius: 0;
     }
 
     @media (min-width: 681px) and (max-width: 992px) {
         margin-bottom: 1rem;
-    }
-
-    &:hover{
-        background-color: var(--purple);
-        color: #FFF;
     }
 
 `;

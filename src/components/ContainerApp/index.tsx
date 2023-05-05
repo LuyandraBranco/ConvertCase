@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSpeechSynthesis } from 'react-speech-kit';
 import jsPDF from "jspdf";
 import { useState } from 'react';
 import {
@@ -16,22 +15,24 @@ import {
 import { TextAreaComponent } from '../TextAreaComponent';
 import { Buttons } from '../Buttons';
 import { ItemButton } from '../ItemButton';
+import { ItemButton1 } from '../ItemButton1';
 
 export function ContainerApp() {
 
     const [text, setText] = useState('');
-    const [playing, setPlaying] = useState(false);
-    const { speak, cancel, speaking } = useSpeechSynthesis();
+    // const [playing, setPlaying] = useState(false);
 
-    function handlePlayAudio() {
-        if (playing) {
-            cancel();
-        } else {
-            speak({ text: text });
-        }
-        setPlaying(!playing);
+    // function handlePlayAudio() {
+    //     if (playing) {
+    //         cancel();
+    //     } else {
+    //         speak({ text: text });
+    //     }
+    //     setPlaying(!playing);
+    // }
+
+    function handlePlayAudio(){
     }
-
     function handleUpperCase() {
         setText(text.toUpperCase());
     }
@@ -133,7 +134,7 @@ export function ContainerApp() {
                         Line Count: {handleCountLine()}
                     </Counter>
 
-                    <ItemButton
+                    <ItemButton1
                         width={"8.125rem"}
                         description={"Download Text"}
                         bgColor={"var(--purple)"}
