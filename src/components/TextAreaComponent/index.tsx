@@ -5,11 +5,25 @@ import {
     Left,
     Right
 } from './styles';
+import { useState } from "react";
 import { FiClipboard } from 'react-icons/fi';
 import { BiTrash } from 'react-icons/bi';
-import { HiVolumeUp } from 'react-icons/hi';
+import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
 
 export function TextAreaComponent({ name, functionn, handleDelete, handleCopy, handlePlay }) {
+    const [isMuted, setIsMuted] = useState(false);
+    const [isCopied, setIsCopied] = useState(false);
+    
+    function changeCopy() {
+        setIsCopied(true);
+        setTimeout(() => {
+            setIsCopied(false);
+        }, 2000); // Exibe a mensagem de feedback por 2 segundos
+    }
+
+    function changeMute() {
+        setIsMuted(!isMuted);
+    }
 
     return (
         <>
@@ -21,10 +35,28 @@ export function TextAreaComponent({ name, functionn, handleDelete, handleCopy, h
             </TextArea>
             <Icons>
                 <Left>
-                    <HiVolumeUp onClick={handlePlay} />
+                    {isMuted ? (
+                        <HiVolumeOff
+                            onClick={() => {
+                                handlePlay();
+                                changeMute();
+                            }} />
+                    ) : (
+                        <HiVolumeUp
+                            onClick={() => {
+                                handlePlay();
+                                changeMute();
+                            }} />
+                    )}
                 </Left>
                 <Right>
-                    <FiClipboard onClick={handleCopy}/>
+                    <FiClipboard
+                        onClick={() => {
+                            handleCopy();
+                            changeCopy();
+                        }}
+                        title={isCopied ? 'Copied!' : 'Copy to clipboard'}
+                    />
                     <BiTrash onClick={handleDelete} />
                 </Right>
             </Icons>
